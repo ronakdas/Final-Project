@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Top Rated Works Slider</title>
+    <style>
+        .slider-container {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .slider-title {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .slider-wrapper {
+            display: flex;
+            overflow: hidden;
+        }
+
+        .slider-item {
+            flex: 1;
+            position: relative;
+        }
+
+        .slider-video {
+            width: 100%;
+            height: auto;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .slider-item.active .slider-video {
+            opacity: 1;
+        }
+
+        .slider-item-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            transition: transform 0.5s ease-in-out;
+            transform: translateY(100%);
+        }
+
+        .slider-item.active .slider-item-content {
+            transform: translateY(0);
+        }
+
+        .slider-nav {
+            display: flex;
+            justify-content: space-between;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 10;
+        }
+
+        .slider-nav button {
+            background-color: transparent;
+            border: none;
+            color: black;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="slider-container">
+        <h1 class="slider-title">Top Rated Works</h1>
+        <div class="slider-wrapper">
+            <div class="slider-item">
+                <video class="slider-video" src="video/vid1.mp4" muted controls width="100%" height="300"></video> <div class="slider-item-content">
+                    <h2>Video Title 1</h2>
+                    <p>Description of Video 1</p>
+                </div>
+            </div>
+            <div class="slider-item">
+                <video class="slider-video" src="video/vid_2.mp4" muted controls width="100%" height="300"></video>
+                <div class="slider-item-content">
+                    <h2>Video Title 2</h2>
+                    <p>Description of Video 2</p>
+                </div>
+            </div>
+            </div>
+        <div class="slider-nav">
+            <button class="slider-prev">&lt;</button>
+            <button class="slider-next">&gt;</button>
+        </div>
+    </div>
+    <script>
+        const sliderItems = document.querySelectorAll('.slider-item');
+        const sliderNavPrev = document.querySelector('.slider-prev');
+        const sliderNavNext = document.querySelector('.slider-next');
+
+        let currentSlide = 0; // Keep track of the currently active slide
+
+        // Function to show the specified slide
+        function showSlide(slideIndex) {
+            sliderItems.forEach((item, index) => {
+                item.classList.remove('active');
+                if (index === slideIndex) {
+                    item.classList.add('active');
+                }
+            });
+            currentSlide = slideIndex;
+        }
+
+        // Event listeners for navigation buttons
+        sliderNavPrev.addEventListener('click', () => {
+            currentSlide = (currentSlide - 1 + sliderItems.length) % sliderItems.length;
+            showSlide(currentSlide);
+        });
+
+        sliderNavNext.addEventListener('click', () => {
+            currentSlide = (currentSlide + 1) % sliderItems.length;
+            showSlide(currentSlide);
+        });
+
+        // Show the first slide initially
+        showSlide(currentSlide);
+
+    </script>
+</body>
+
+</html>
