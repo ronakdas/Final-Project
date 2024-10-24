@@ -136,11 +136,11 @@
   padding-bottom: 220px
 }
 
-.timeline_quote-image {
-  border-radius: 8px;
-  width: 48px;
-  height: 48px;
-  margin-right: 24px
+.mil-price-image {
+  width: 20px; /* Adjust the width as needed */
+  height: 20px; /* Adjust the height as needed */
+  vertical-align: middle; /* Center the image vertically */
+  margin-left: 5px; /* Add a small margin for spacing */
 }
 
 .timeline_image-wrapper {
@@ -461,6 +461,7 @@
     margin-top: 130px
   }
 }
+
 
 @media screen and (max-width:767px) {
   #w-node-_43c3ed43-6ac2-b500-6d6f-92990686a3d4-0686a3cd {
